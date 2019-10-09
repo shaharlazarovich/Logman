@@ -1,0 +1,30 @@
+﻿@using Logman.Web.Code.Classes
+@using Logman.Web.Models.Shared
+@model Logman.Web.Models.Shared.GaugeViewModel
+
+
+@{
+    ViewStartViewModel viewModel = Util.GetLayoutViewModel();
+    if (viewModel != null)
+    {
+        var scaledValue = (int) (((decimal) Model.Value/Model.MaxValue)*100);
+        viewModel.Gauges.Add(new GaugeData {ContainerName = Model.ContainerName, Label = Model.Label, Value = scaledValue});
+    }
+}
+<div class="dashboard-gaugeContainer well">
+
+
+    <div id="@Model.ContainerName">
+
+
+    </div>
+    <div class="gaugeFooter center-align">
+        <p>
+            <span class="element-font-digital">@Model.Value</span>
+        </p>
+        <p>
+            @Html.ActionLink(" View Details", "AppEvents", "Application", new {appId = Model.AppId}, new {@class = "btn btn-sm btn-primary element-btn-text-style"})
+        </p>
+    </div>
+   
+</div>

@@ -1,0 +1,29 @@
+﻿@model long
+           
+<div class="panel panel-default element-float" >
+    
+    <div class="panel-body">
+        <table>
+            <tr >
+                <td>
+                    @Html.ActionLink("Manage users", "InviteUser", "Application", new {id= Model }, new { @class = "btn btn-sm btn-primary element-bottom-1 element-width-2 element-btn-text-style" })
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    @Html.ActionLink("Manage alerts", "ViewAlerts", "Application", new {appId= Model }, new { @class = "btn btn-sm btn-primary element-bottom-1 element-width-2 element-btn-text-style" })
+                    
+                </td>
+            </tr>
+            
+            <tr >
+                <td>
+                    @Html.ActionLink(" View application logs", "AppEvents", "Application", new { appId= Model }, new { @class = "btn btn-sm btn-primary element-width-2 element-btn-text-style" })
+                </td>
+            </tr>
+            
+
+        </table>
+    </div>
+</div>

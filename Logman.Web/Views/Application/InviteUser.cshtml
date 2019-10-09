@@ -1,0 +1,24 @@
+﻿@model Logman.Web.Models.InviteUserViewModel
+@{
+    ViewBag.Title = "InviteUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Invite user to your application</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("InviteUser", "Application", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.UserEmail)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.UserEmail)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Invite" class="btn btn-primary"/>
+}

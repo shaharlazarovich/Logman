@@ -1,0 +1,19 @@
+﻿@using Logman.Web.Models.Shared
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+    <body>
+        
+        @{
+            var model = new ApplicationHealthViewModel(){ErrorCount = 80, FatalCount = 130, WarningCount = 66, ApplicationName = "Test Application"};
+        }
+        <div>
+            @Html.Partial("Dashboard/_ApplicationPartial", model)
+        </div>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+﻿@using Logman.Web.Models.Shared
+@model Logman.Web.Models.Apps.ApplicationViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    foreach (var app in Model.Applications)
+    {
+        var model = new ApplicationHealthViewModel() { ErrorCount = app.Status.ErrorCount, FatalCount = app.Status.FatalCount, WarningCount = app.Status.WarningCount,
+            MaxFatalCount = app.Status.MaxFatalErrors, MaxErrorCount = app.Status.MaxErrors, MaxWarningCount = app.Status.MaxWarnings, 
+            AppTrends = app.Trend,
+            ApplicationName = app.AppName ,
+        ApplicationId = app.Id};
+         <div>
+            @Html.Partial("Dashboard/_ApplicationPartial", model)
+        </div>
+    }
+}

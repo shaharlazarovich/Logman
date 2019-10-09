@@ -1,0 +1,79 @@
+﻿@using System.Web.Optimization
+@using Logman.Common.DomainObjects
+@model Logman.Common.DomainObjects.Event
+
+@{
+    Event modelObject = Model;
+}
+
+<head>
+    <title></title>
+    @Styles.Render("~/Content/Styles/")
+</head>
+<body>
+    <div class="element-dialogbox">
+        @{
+        while (modelObject != null)
+        {
+            <table>
+                <tr>
+                    <td class="td-title">
+                        Event Message
+                    </td>
+                    <td class="td-text">
+                        @modelObject.Message
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Level</td>
+                    <td class="td-text">@modelObject.EventLevel.ToString()</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Full details</td>
+                    <td class="td-text">@modelObject.Description</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Date/Time</td>
+                    <td class="td-text">@modelObject.TimeCreated.ToLocalTime()</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Computer Name</td>
+                    <td class="td-text">@modelObject.ComputerName</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">IP Address</td>
+                    <td class="td-text">@modelObject.IpAddress</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">User Agent</td>
+                    <td class="td-text">@modelObject.UserAgent</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Keywords</td>
+                    <td class="td-text">@modelObject.Keywords</td>
+                </tr>
+
+                <tr>
+                    <td class="td-title">Extended Information</td>
+                    <td class="td-text">@modelObject.ExtendedInformation</td>
+                </tr>
+            </table>
+
+            if (modelObject.InnerEvent != null)
+            {
+                <div class="innerEvent">
+                    <h3>See the inner event below! </h3>
+                </div>
+            }
+            modelObject = modelObject.InnerEvent;
+        }
+        }
+    </div>
+</body>

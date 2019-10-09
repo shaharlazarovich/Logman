@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NoLoginLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="" style="margin-left:auto;margin-right: auto;width: 60%;">
+            
+            <div class="element-float">
+                <img src="@Url.Content("~/Content/Images/LogManLogo.jpg")" />
+            </div>
+                <div class="element-float" style="margin-top:auto;margin-bottom: auto;margin-left: 30px;">
+                    <h2>Welcome to Logman</h2>
+                    <h3>The free centralized log management system</h3>
+                <h1>Logman looks after your logs!</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-6" >
+            <h1>Sin up</h1>
+        </div>
+        <div class="col-md-6 column" >
+            <h1>Login</h1>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 boxinfo">
+            <h1>It's fast!</h1>
+            <p>
+                We constantly put this application under a proper load test to make sure that it will cope with a massive amount of concurrent reqursts as well as huge amount of data that it might receive. Logman has proved that it will respond to any requests (on a computer with an average configuration) in less tham 30 milliseconds!
+            </p>
+        </div>
+        <div class="col-md-4  boxinfo">
+            <h1>Provides great visibility</h1>
+            <p>
+                Logman comes with a dashboard with plenty of graphs and curves to demonstrate the status of your application as well as the current trend of the received events.It also
+                displays the list of errors, on which you can apply many different types of filters.
+            </p>
+        </div>
+        <div class="col-md-4  boxinfo">
+            <h1>Logman will contact you!</h1>
+            <p>
+                Logman is armed with an alerting system which can be easily configured by a user who has proper privileges. Then every time the number of events that are received in a certain time window passes a given threshold, logman will notify you!
+            </p>
+        </div>
+    </div>
+</div>
+

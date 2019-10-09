@@ -1,0 +1,28 @@
+﻿@model Logman.Common.DomainObjects.ApplicationEvents
+@{
+    ViewBag.Title = "Application Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (!string.IsNullOrEmpty(Model.NewQueryString))
+    {
+        @Html.Hidden("hidQueryString", Html.Raw(Model.NewQueryString))
+    }
+}
+@Html.Hidden("hidCurrentPageNumber",0)
+
+@Html.Partial("_TopEvents", Model.TopEvents)
+
+<div class="panel panel-primary element-topLevel-margins">
+    <div class="panel-heading">
+        <span class="panel-title">Events</span>
+    </div>
+    <div class="panel-body element-noPadding element-noMargin">
+        @Html.Partial("_Filter")
+        @Html.Partial("EventGrid", Model.Events)
+    </div>
+</div>
+
+
+

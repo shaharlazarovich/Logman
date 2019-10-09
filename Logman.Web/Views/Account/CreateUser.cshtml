@@ -1,0 +1,50 @@
+﻿@model Logman.Web.Models.Account.UserViewModel
+@{
+    ViewBag.Title = "Create User";
+    Layout = "~/Views/Shared/_NoLoginLayout.cshtml";
+}
+
+<h2>Create User</h2>
+
+@using (Html.BeginForm("CreateUser","Account",FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <div class=" col-md-4 col-md-offset-4">
+    <table class="table table-condensed table-responsive ">
+
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Username)
+            </td>
+            <td>
+
+                @Html.TextBoxFor(x => x.Username)
+            </td>
+
+        <tr>
+
+
+            <td>
+                @Html.LabelFor(x => x.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(x => x.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.RepeatPassword)
+            </td>
+            <td>
+                @Html.PasswordFor(x => x.RepeatPassword)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Sign me up!" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Login", "Account", null, new { @class = "btn btn-default" })
+            </td>
+        </tr>
+    </table>
+    </div>
+}

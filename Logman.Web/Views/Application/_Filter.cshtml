@@ -1,0 +1,43 @@
+﻿<div id="tblFilterCriteria" class="well">
+    <table>
+        <tr>
+            <td>
+                Event Type
+            </td>
+            <td>
+                @Html.RadioButton("rgEventTpe", 15, true) <span> All </span>
+                @Html.RadioButton("rgEventTpe", 1, false) <span> Fatal </span>
+                @Html.RadioButton("rgEventTpe", 2, false) <span> Error </span>
+                @Html.RadioButton("rgEventTpe", 4, false) <span> Warning </span>
+                @Html.RadioButton("rgEventTpe", 8, false) <span> Information </span>
+                
+>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Events logged since
+            </td>
+            <td>
+                @Html.RadioButton("rdSince", "0", true) <span> All times</span>
+                @Html.RadioButton("rdSince", "30", false) <span> 30 Minutes ago</span>
+                @Html.RadioButton("rdSince", "60", false) <span> 1 Hour ago </span>
+                @Html.RadioButton("rdSince", "360", false) <span> 6 Hours ago </span>
+                @Html.RadioButton("rdSince", "720", false) <span> 12 Hours ago </span>
+                @Html.RadioButton("rdSince", "1440", false) <span> 24 Hours ago </span>
+                @Html.RadioButton("rdSince", "10080", false) <span> 7 Days ago </span>
+                @Html.RadioButton("rdSince", "20160", false) <span> 2 Weeks ago </span>
+                @Html.RadioButton("rdSince", "43200", false) <span> One month ago</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Keyword
+            </td>
+            <td>@Html.TextBox("txtKeyword")</td>
+        </tr>
+    </table>
+    <a href="javascript:JavaScripts.RefreshEvents();" class="btn btn-primary"> Refresh </a>
+</div>

@@ -1,0 +1,104 @@
+﻿@model Logman.Web.Models.Apps.AppCreateViewModel
+@{
+    ViewBag.Title = "CreateApplication";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add or update an application</h2>
+
+@Html.ValidationSummary()
+@Html.ValidationMessage("CustomError")
+
+@{
+    string targetAction = Model.IsEditMode ? "UpdateApplication" : "CreateApplication";
+}
+
+@using (@Html.BeginForm(targetAction, "Application", FormMethod.Post))
+{
+    <table class="table table-responsive" id="tblCreateApp">
+        <tr>
+            <td style="width:450px">
+                @Html.LabelFor(x => x.AppName)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.AppName)
+            </td>
+        </tr>
+        
+        @{
+            if (Model.IsEditMode)
+            {
+                <tr>
+                    <td>
+                        Application Key
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x=>x.AppKey)
+                    </td>
+                </tr>
+                @Html.HiddenFor(x=>x.AppKey)
+                @Html.HiddenFor(x=>x.Id)
+            }
+        }
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Enabled)
+            </td>
+            <td>
+                @Html.CheckBoxFor(x => x.Enabled, new { @class = "switchedCheckBox" })
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.DefaultRetainPeriodDays)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.DefaultRetainPeriodDays)
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MaxFatalErrors)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.MaxFatalErrors)
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MaxErrors)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.MaxErrors)
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MaxWarnings)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.MaxWarnings)
+            </td>
+        </tr>
+    
+
+
+    </table>
+    
+    <p class="element-topLevel-margins">
+        @{
+            string submitButtonCaption = Model.IsEditMode ? " Update " : " Create";
+        }
+        <input type="submit" value='@submitButtonCaption' class="btn btn-primary " />
+        @Html.ActionLink(" Cancel ", "Index", "Application", new { }, new { @class = "btn btn-default" })    
+    </p>
+    
+}
+
+<script>
+    $(".switchedCheckBox").bootstrapSwitch({onText:"Yes", offText:"No"});
+</script>

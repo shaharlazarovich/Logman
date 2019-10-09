@@ -1,0 +1,24 @@
+﻿@using Logman.Web.Code
+@using Logman.Web.Code.Classes
+@using Logman.Web.Models.Shared
+@using WebGrease.Css.Extensions
+@model Logman.Web.Models.Shared.LineData
+           
+@{
+    ViewStartViewModel viewModel = Util.GetLayoutViewModel();
+    if (viewModel != null)
+    {
+        var item = new LineData()
+        {
+            ChartTitle = Model.ChartTitle, ContainerName = Model.ContainerName,
+            XAxisName = Model.XAxisName, YAxisName = Model.YAxisName
+        };
+        
+        Model.Data.ForEach(x => item.Data.Add(x.Key,x.Value));
+        viewModel.Lines.Add(item);
+    }
+}
+
+
+<div id="@Model.ContainerName" class="dashboard-lineContainer"></div>
+

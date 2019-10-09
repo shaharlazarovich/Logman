@@ -1,0 +1,43 @@
+﻿@model Logman.Web.Models.Apps.AlertViewModel
+@{
+    ViewBag.Title = "AddAlert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Alerts</h2>
+
+<div id="divAddAlert" class="panel panel-default">
+    @Html.ValidationSummary()
+    @Html.ValidationMessage("Custom")
+
+    @using (Html.BeginForm("AddAlert", "Application", FormMethod.Post))
+    {
+        @Html.HiddenFor(x=>x.AppId)
+        <p>
+            If number
+            of  
+            @Html.CheckBoxFor(x => x.IncludesFatals) Fatal Errors
+            and
+            @Html.CheckBoxFor(x => x.IncludesErrors) Errros
+            and
+            @Html.CheckBoxFor(x => x.IncludesWarnings) Warnings in
+            @Html.TextBoxFor(x => x.PeriodValue)
+            @Html.RadioButtonFor(x=>x.TypeOfPeriod, 0)
+            Hours/@Html.RadioButtonFor(x => x.TypeOfPeriod,1)
+            Days
+            passed
+            @Html.TextBoxFor(x => x.Value)
+            send a
+            notification of
+            type
+            @Html.RadioButtonFor(x=>x.TypeOfNotification, 0)
+            Email or
+            @Html.RadioButtonFor(x=>x.TypeOfNotification, 1)
+            Web Hook
+            to
+            @Html.TextBoxFor(x => x.Target)
+        </p>
+        <input type="submit" value=" Add Alert " class="btn btn-primary"/>
+        <a href="" class="btn btn-default"> Cancel </a>
+    }
+</div>

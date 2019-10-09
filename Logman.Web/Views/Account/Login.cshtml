@@ -1,0 +1,41 @@
+﻿@model Logman.Web.Models.Account.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_NoLoginLayout.cshtml";
+}
+
+<div class="container">
+    @Html.ValidationSummary()
+    @Html.ValidationMessage("customError")
+    
+    @using (Html.BeginForm("Login","Account", FormMethod.Post))
+    {
+        <table class="table">
+            <tr>
+                <td style="width: 5%;">
+                    User name:            
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Username)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    @Html.PasswordFor(x => x.Password)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.CheckBoxFor(x=>x.RememberMe) Remember me for one week.
+                </td>
+            </tr>
+        </table>
+        
+        <input type="submit" value=" Login " class="btn btn-primary"/>
+        @Html.ActionLink(" I need to create a new account!", "CreateUser","Account",new {@class=""}) @:    |     
+        @Html.ActionLink(" I have forgotten my password!", "ResetPassword", "Account", new { @class = "" })
+    }
+</div>

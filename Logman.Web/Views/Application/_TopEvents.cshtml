@@ -1,0 +1,19 @@
+﻿@model Dictionary<string,int>
+<div class="panel panel-primary element-topLevel-margins">
+    <div class="panel-heading">
+        <span class="panel-title">Top 5 Most Occuring Fatal Events</span>
+    </div>
+    <div class="panel-body element-noPadding">
+        <table class="table  table-responsive table-condensed table-hover table-striped element-noMargin" id="tblTopEvents">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-left">@item.Key</td>
+                        <td class="element-width-10percent text-left">@item.Value.ToString("####,###") times.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+﻿@using Logman.Web.Models.Shared
+@using WebGrease.Css.Extensions
+@model  Logman.Web.Models.Shared.ApplicationHealthViewModel
+
+
+
+<div id="appDashboard" class="panel panel-default dashboard-Application">
+    <div class="panel-heading">
+        <h1 class="panel-title center-align element-font-h1">@Model.ApplicationName</h1>
+    </div>
+    <div class="panel-body">
+        <div class="element-float">
+            @*[ GAUGE :  FATAL ]*@
+            @Html.Partial("Dashboard/_GaugePartial", new GaugeViewModel
+            {
+                ContainerName = "gauge_Fatal" + Guid.NewGuid(),
+                Label = "Fatal",
+                Value = Model.FatalCount,
+                MaxValue = Model.MaxFatalCount,
+                AppId = Model.ApplicationId
+            })
+
+
+            @*[ GAUGE :  ERROR ]*@
+            @Html.Partial("Dashboard/_GaugePartial", new GaugeViewModel
+            {
+                ContainerName = "gauge_Error" + Guid.NewGuid(),
+                Label = "Error",
+                Value = Model.ErrorCount,
+                MaxValue = Model.MaxErrorCount,
+                AppId = Model.ApplicationId
+            })
+
+            @*[ GAUGE :  WARNING ]*@
+            @Html.Partial("Dashboard/_GaugePartial", new GaugeViewModel
+            {
+                ContainerName = "gauge_Warning" + Guid.NewGuid(),
+                Label = "Warning",
+                Value = Model.WarningCount,
+                MaxValue = Model.MaxWarningCount,
+                AppId = Model.ApplicationId
+            })
+        </div>
+        <div id="controls" class="element-float" style="width: 60%">
+            @*TABS*@
+            <div class="container">
+                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active"> <a href="#fatalLineChart" data-toggle="tab"> Fatal Errors </a></li>
+                    <li> <a href="#errorLineChart" data-toggle="tab"> Errors </a></li>
+                    <li> <a href="#warningLineChart" data-toggle="tab"> Warnings </a></li>
+                </ul>
+
+                <div id="lineChartTabContent" class="tab-content">
+
+                    @*[ LINE :  FATAL ]*@
+
+                    <div class="tab-pane active fade in" id="fatalLineChart">
+                        @{
+                            var lineM = new LineData
+                            {
+                                ChartTitle = "Fatal Errors",
+                                XAxisName = "Date",
+                                YAxisName = "# Of Logs",
+                                ContainerName = "chart_line_fatal" + Guid.NewGuid()
+                            };
+
+                            Model.AppTrends.Fatals.OrderBy(x => x.Key).ForEach(x => lineM.Data.Add(x.Key.ToString("d"), x.Value));
+                        }
+                        @Html.Partial("Dashboard/_LinePartial", lineM)
+
+                    </div>
+
+
+                    @*[ LINE :  ERROR ]*@
+
+                    <div class="tab-pane fade" id="errorLineChart">
+                        @{
+                            var lineE = new LineData
+                            {
+                                ChartTitle = "Errors",
+                                XAxisName = "Date",
+                                YAxisName = "# Of Logs",
+                                ContainerName = "chart_line_error" + Guid.NewGuid()
+                            };
+
+                            Model.AppTrends.Errors.OrderBy(x => x.Key).ForEach(x => lineE.Data.Add(x.Key.ToString("d"), x.Value));
+                        }
+                        @Html.Partial("Dashboard/_LinePartial", lineE)
+                    </div>
+
+
+                    @*[ LINE :  WARNING ]*@
+
+                    <div class="tab-pane fade" id="warningLineChart">
+                        @{
+                            var lineW = new LineData
+                            {
+                                ChartTitle = "Warnings",
+                                XAxisName = "Date",
+                                YAxisName = "# Of Logs",
+                                ContainerName = "chart_line_warning" + Guid.NewGuid()
+                            };
+
+                            Model.AppTrends.Warnings.OrderBy(x => x.Key).ForEach(x => lineW.Data.Add(x.Key.ToString("d"), x.Value));
+                        }
+                        @Html.Partial("Dashboard/_LinePartial", lineW)
+                    </div>
+
+                </div>
+            </div>
+
+           
+
+        </div>
+        <div class="element-float">
+            @Html.Partial("Dashboard/_AppCommandPartial", Model.ApplicationId)
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#tabs').tab();
+    });
+</script>
